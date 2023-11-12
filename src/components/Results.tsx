@@ -87,7 +87,9 @@ const Results = ({ name, gender, age }: ResultsProps) => {
         </p>
       </div>
       <div className="flex flex-col justify-center items-center border-2 p-4 bg-transparent rounded">
-        <h3 className="text-6xl  text-gray-50 font-bold my-2">Healthchecks</h3>
+        <h3 className="text-6xl  text-gray-50 font-bold my-2">
+          Healthchecks/screenings
+        </h3>
         <button
           className="transition ease-in-out delay-50 bg-green-500 hover:scale-105 text-white p-2 rounded w-80 hover:bg-gray-50 hover:text-green-500 my-2"
           type="submit"
