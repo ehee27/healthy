@@ -1,6 +1,7 @@
 export const dataMen = [
   {
-    cohort: 'man20',
+    gender: 'man',
+    age: '18-25',
     minutes: '150+',
     recovery: '1-2 days',
     growth: 'weeks',
@@ -13,7 +14,8 @@ export const dataMen = [
     ],
   },
   {
-    cohort: 'man30',
+    gender: 'man',
+    age: '26-35',
     minutes: '150+',
     recovery: '2 days',
     growth: 'weeks to months',
@@ -26,7 +28,8 @@ export const dataMen = [
     ],
   },
   {
-    cohort: 'man40',
+    gender: 'man',
+    age: '36-45',
     minutes: '150+',
     recovery: '1-2 days',
     growth: 'weeks',
@@ -43,7 +46,8 @@ export const dataMen = [
     ],
   },
   {
-    cohort: 'man50',
+    gender: 'man',
+    age: '46-55',
     minutes: '100 - 150',
     recovery: '2-3 days',
     growth: 'weeks - months',
@@ -62,7 +66,8 @@ export const dataMen = [
     ],
   },
   {
-    cohort: 'man60',
+    gender: 'man',
+    age: '56-65',
     minutes: '100+',
     recovery: '3 days',
     growth: 'weeks - months',
@@ -84,12 +89,13 @@ export const dataMen = [
 
 export const dataWoman = [
   {
-    cohort: 'woman20',
+    gender: 'woman',
+    age: '18-25',
     minutes: '150+',
     recovery: '1-2 days',
     growth: 'weeks',
     summary:
-      "A man in his 20's enjoyes the most optimal window for strength gains and muscle growth. Recovery time is short and risk for injury is minimal. You can engage in heavy sessions 3+ times per week. This is the best time to push yourself and build a the best foundation possible for the rest of your life.",
+      "A woman in his 20's enjoyes the most optimal window for strength gains and muscle growth. Recovery time is short and risk for injury is minimal. You can engage in heavy sessions 3+ times per week. This is the best time to push yourself and build a the best foundation possible for the rest of your life.",
     healthChecks: [
       'Yearly evalution by primary doctor',
       'Skin cancer screening',
@@ -97,7 +103,8 @@ export const dataWoman = [
     ],
   },
   {
-    cohort: 'woman30',
+    gender: 'woman',
+    age: '26-35',
     minutes: '150+',
     recovery: '2 days',
     growth: 'weeks to months',
@@ -110,7 +117,8 @@ export const dataWoman = [
     ],
   },
   {
-    cohort: 'woman40',
+    gender: 'woman',
+    age: '36-45',
     minutes: '150+',
     recovery: '1-2 days',
     growth: 'weeks',
@@ -127,7 +135,8 @@ export const dataWoman = [
     ],
   },
   {
-    cohort: 'woman50',
+    gender: 'woman',
+    age: '46-55',
     minutes: '100 - 150',
     recovery: '2-3 days',
     growth: 'weeks - months',
@@ -146,7 +155,8 @@ export const dataWoman = [
     ],
   },
   {
-    cohort: 'woman60',
+    gedner: 'woman',
+    age: '56-65',
     minutes: '100+',
     recovery: '3 days',
     growth: 'weeks - months',
