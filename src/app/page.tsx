@@ -2,12 +2,12 @@
 'use client'
 
 import { Exo } from 'next/font/google'
-
 import { FormEvent, useState } from 'react'
 import Loading from '@/components/Loading'
 import Results from '@/components/results/Results'
-import { useRouter } from 'next/navigation'
 import Form from '@/components/Form'
+import { FaLaptopMedical } from 'react-icons/fa'
+import { FaBrain, FaPersonRunning } from 'react-icons/fa6'
 
 const exo = Exo({
   subsets: ['latin'],
@@ -21,46 +21,58 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [results, setResults] = useState(false)
 
-  // const { push } = useRouter()
-
   // set loading state, 2s to render Loader, setResults triggers <Result/>, OPTIONAL push
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setTimeout(() => {
       setResults(true)
-      // push(`/results/${name}`)
     }, 2000)
   }
 
   // render determined by multiple ternary, if loading check results, if results false render Loader
   // results true, render the results comp with data
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 bg-gradient-to-r from-gray-900 to-black">
-      {loading ? (
-        results === false ? (
-          <Loading />
+    <div className="flex justify-center h-screen py-20">
+      <main className="w-[80%]">
+        {loading ? (
+          results === false ? (
+            <Loading />
+          ) : (
+            <span>
+              <Results name={name} age={age} gender={gender} />
+            </span>
+          )
         ) : (
-          <span>
-            <Results name={name} age={age} gender={gender} />
-          </span>
-        )
-      ) : (
-        <>
-          <h1 className={`${exo.className} text-7xl text-gray-50 mb-10`}>
-            COGA
-          </h1>
-          <Form
-            name={name}
-            age={age}
-            gender={gender}
-            setName={setName}
-            setAge={setAge}
-            setGender={setGender}
-            handleSubmit={handleSubmit}
-          />
-        </>
-      )}
-    </main>
+          <div className="w-[100%]">
+            <Form
+              name={name}
+              age={age}
+              gender={gender}
+              setName={setName}
+              setAge={setAge}
+              setGender={setGender}
+              handleSubmit={handleSubmit}
+            />
+            <div className="flex justify-around text-9xl mt-40">
+              <div className="flex flex-col justify-center items-center gap-2">
+                <FaLaptopMedical className="text-secondary" />
+                <p className="text-xl font-bold">Health</p>
+              </div>
+
+              <div className="flex flex-col justify-center items-center gap-2">
+                <FaPersonRunning className="text-accent" />
+                <p className="text-xl font-bold">Fitness</p>
+              </div>
+
+              <div className="flex flex-col justify-center items-center gap-2">
+                <FaBrain className="text-blue-300" />
+                <p className="text-xl font-bold">Wellbeing</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
   )
 }

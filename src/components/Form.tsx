@@ -16,27 +16,50 @@ const Form = ({
 }: any) => {
   return (
     <>
-      <div className="rounded p-2 m-2 border-2 border-gray-50">
-        <div className="flex rounded p-2 m-2">
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            <input
-              className="p-2 my-2 rounded border-2 text-gray-50 bg-transparent"
-              type="text"
-              placeholder="Your name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
-
-            <div className="my-3">
-              <select onChange={e => setGender(e.target.value)}>
-                <option value="">Your Gender</option>
+      {/* <div className="hero min-h-screen"> */}
+      <div className="hero-content flex-col text-center">
+        <div className="text-center">
+          <h1 className="text-5xl font-bold">Welcome to COGA</h1>
+          <p className="py-6">
+            We're a group of dudes who love to write code and rap about fitness.
+          </p>
+        </div>
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <form className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                onChange={e => setName(e.target.value)}
+                type="text"
+                placeholder="name"
+                className="input input-bordered bg-white"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Gender</span>
+              </label>
+              <select
+                onChange={e => setGender(e.target.value)}
+                className="input input-bordered bg-white"
+              >
+                <option value="">select gender</option>
                 <option value="man">Man</option>
                 <option value="woman">Woman</option>
               </select>
             </div>
-            <div className="my-3">
-              <select onChange={e => setAge(e.target.value)}>
-                <option value="">Your Age Range</option>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Age</span>
+              </label>
+              <select
+                onChange={e => setAge(e.target.value)}
+                className="input input-bordered bg-white"
+              >
+                <option value="">select age range</option>
                 <option value="18-25">18 - 25</option>
                 <option value="26-35">26 - 35</option>
                 <option value="36-45">36 - 45</option>
@@ -47,15 +70,15 @@ const Form = ({
                 <option value="86-95">86 - 95</option>
               </select>
             </div>
-            <button
-              className={`${exo.className} transition ease-in-out delay-50 bg-green-500 hover:scale-105 text-white p-2 rounded w-200 hover:bg-gray-50 hover:text-green-500`}
-              type="submit"
-            >
-              GET RESULTS
-            </button>
+            <div className="form-control mt-6">
+              <button onClick={handleSubmit} className="btn btn-primary">
+                Login
+              </button>
+            </div>
           </form>
         </div>
       </div>
+      {/* </div> */}
     </>
   )
 }

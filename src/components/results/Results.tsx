@@ -8,10 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FaBeer } from 'react-icons/fa'
 import {
   faDumbbell,
-  faHeart,
+  faHeartPulse,
   faPersonWalking,
   faPersonRunning,
 } from '@fortawesome/free-solid-svg-icons'
+import { IoPersonCircleSharp } from 'react-icons/io5'
+import Accordion from '../Accordion'
+import HealthTab from '../HealthTab'
 
 const exo = Exo({
   subsets: ['latin'],
@@ -28,6 +31,9 @@ const Results = ({ name, gender, age }: ResultsProps) => {
   // 2 state vars - summary and healthchecks
   const [trainingSummary, setTrainingSummary] = useState('')
   const [healthchecks, setHealthChecks] = useState([])
+  const [activities, setActivities] = useState([])
+  // const [weights, setWeights] = useState('')
+  // const [cardio, setCardio] = useState('')
 
   // WHY DOES THIS NOT WORK IN USEEFFECT????
 
@@ -48,9 +54,11 @@ const Results = ({ name, gender, age }: ResultsProps) => {
       results = dataMen
       // checkAge(results)
       results.forEach(item => {
-        if (item.age === age) {
-          setTrainingSummary(item.summary)
-          setHealthChecks(item.healthChecks)
+        if (item?.age === age) {
+          // REFACTOR?
+          setTrainingSummary(item?.summary)
+          setHealthChecks(item?.healthChecks)
+          setActivities(item?.activities)
         }
       })
     } else {
@@ -58,98 +66,78 @@ const Results = ({ name, gender, age }: ResultsProps) => {
       // checkAge(results)
       results.forEach(item => {
         if (item.age === age) {
+          // REFACTOR?
           setTrainingSummary(item.summary)
           setHealthChecks(item.healthChecks)
+          setActivities(item?.activities)
         }
       })
     }
   }, [])
+  console.log(healthchecks)
 
   return (
-    <div className={`${exo.className} flex flex-col rounded p-2`}>
-      <h1 className="text-7xl text-gray-50 font-bold mb-5 text-center">
-        {name}'s Evalution
-      </h1>
-      <h3 className="text-3xl text-white">
-        Gender: <span className="text-3xl text-green-500">{gender}</span>
-      </h3>
-      <h3 className="text-3xl text-white">
-        Age: <span className="text-3xl text-green-500">{age}</span>
-      </h3>
-      <div className="sm:col-span-3 border-2 p-4 my-1 bg-transparent rounded">
-        <h3 className="flex flex-col items-center text-4xl text-gray-50 font-bold">
-          Fitness Recomendation
-        </h3>
-        <p className="text-sm leading-relaxed my-3 px-5 text-gray-50">
-          {trainingSummary}
-        </p>
+    <div className="border-2 rounded-xl p-3 shadow-2xl">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 py-5">
+        <div className="flex flex-col justify-center items-center text-3xl font-bold">
+          <IoPersonCircleSharp className="text-9xl text-neutral" />
+          <h1>{name}</h1>
+        </div>
+
+        <div className="flex flex-col gap-3 justify-center items-center">
+          <h3 className="text-3xl">
+            <span className="font-bold text-secondary">{gender}</span>
+          </h3>
+          <h3 className="text-3xl">
+            <span className="font-bold text-secondary">{age}</span>
+          </h3>
+        </div>
       </div>
 
-      {healthchecks?.map((item, i) => {
-        return (
-          <button
-            key={i}
-            className="transition ease-in-out delay-50 bg-green-500 hover:scale-105 text-white p-2 rounded w-80 hover:bg-gray-50 hover:text-green-500 my-2"
-          >
-            {item}
-          </button>
-        )
-      })}
+      {/* ------------------------------------------------ */}
       {/* icons for recomended programming  */}
-      <div className="flex gap-3 text-green-500 text-5xl">
-        <div className="flex flex-col gap-2 justify-center items-center p-3">
-          <FontAwesomeIcon icon={faDumbbell} />
-          <span className="text-xl text-white">Weight Training</span>
+      <div className="bg-neutral rounded-lg my-3">
+        <h3 className="text-primary text-3xl font-extrabold px-5 py-3">
+          Fitness Recommendations
+        </h3>
+        <div className="grid sm:grid-cols-2 bg-neutral gap-3 pb-7 text-white my-2 rounded-lg">
+          <div className="flex flex-col justify-center items-center">
+            <FontAwesomeIcon
+              icon={faDumbbell}
+              className="text-8xl text-secondary animate-pulse mb-3"
+            />
+            <p>{activities.weights}</p>
+          </div>
+          <div className="flex flex-col justify-center items-center">
+            <FontAwesomeIcon
+              icon={faHeartPulse}
+              className="text-8xl text-secondary animate-pulse mb-3"
+            />
+            <p>{activities.cardio}</p>
+          </div>
         </div>
-        <div className="flex flex-col gap-2 justify-center items-center p-3">
-          <FontAwesomeIcon icon={faPersonWalking} />
-          <span className="text-xl text-white">Walking</span>
-        </div>
-        <div className="flex flex-col gap-2 justify-center items-center p-3">
-          <FontAwesomeIcon icon={faPersonRunning} />
-          <span className="text-xl text-white">Running</span>
-        </div>
+      </div>
+      <div className="bg-neutral text-white p-5 my-2 rounded-lg">
+        <h3 className="text-primary text-3xl font-extrabold mb-3">
+          Strength Training
+        </h3>
+        <p>{trainingSummary}</p>
+      </div>
+
+      {/* ------------------------------------------------ */}
+      <div className="bg-neutral rounded-lg p-3">
+        {healthchecks?.map((item, i) => {
+          return (
+            <HealthTab
+              key={i}
+              title={item.title}
+              description={item.description}
+            />
+          )
+        })}
       </div>
     </div>
   )
 }
 
 export default Results
-
-{
-  /* <div className="grid grid-cols-3 border-2 rounded p-4">
-       
-        <div className="sm:col-span-3 md:col-span-1 border-2 rounded p-4">
-          <p className="text-2xl text-gray-50 my-2">
-            Age: <span className="font-bold text-green-500">{age}</span>
-          </p>
-          <p className="text-2xl text-gray-50 my-2">
-            Gender: <span className="font-bold text-green-500">{gender}</span>
-          </p>
-        </div>
-        
-        <div className="sm:col-span-3 md:col-span-2 flex flex-col justify-center border-2 p-4 text-xl bg-transparent rounded">
-          <h3 className="text-3xl text-gray-50 font-bold">
-            Recommended Activity Levels
-          </h3>
-          <p className="my-2 text-gray-50">
-            Minutes per week:{' '}
-            <span className="font-bold text-green-500">150+</span>
-          </p>
-          <p className="my-2 text-gray-50">
-            Sessions: <span className="font-bold text-green-500">3-5</span>
-          </p>
-          <p className="my-2 text-gray-50">
-            Recovery between sessions:{' '}
-            <span className="font-bold text-green-500">1-2 days</span>
-          </p>
-        </div>
-      </div> */
-}
-{
-  /* --------------- */
-}
-
-{
-  /* <ChecksScreenings /> */
-}
